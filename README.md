@@ -2,11 +2,6 @@
 
 Generated DJ assistant app
 
-Leko se zaguboi
-
-
-
-Guys pomosht
 
 
 
