@@ -1,0 +1,103 @@
+@model SuggestionsViewModel
+@{ ViewData["Title"] = "Suggestions"; }
+
+<div id="suggestions-section">
+  <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <h2 class="mb-0">💡 AI Suggestions</h2>
+    <button class="btn btn-sm btn-outline-primary" onclick="location.reload()">
+      🔄 Refresh
+    </button>
+  </div>
+
+  <div class="alert alert-light border-0 mb-4">
+    <div class="row g-3">
+      <div class="col-6 col-md-4">
+        <div class="text-center">
+          <div class="fs-3 fw-bold" style="background: linear-gradient(45deg, #00b894, #00cec9); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            @Model.CompletedSongsCount
+          </div>
+          <small class="text-muted">Completed Songs</small>
+        </div>
+      </div>
+      <div class="col-6 col-md-4">
+        <div class="text-center">
+          <div class="fs-3 fw-bold" style="background: linear-gradient(45deg, #5f27cd, #48dbfb); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            @Model.Suggestions.Count
+          </div>
+          <small class="text-muted">AI Suggestions</small>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="text-center">
+          <div class="fs-6 fw-bold text-muted">
+            🤖 AI-Powered
+          </div>
+          <small class="text-muted">Smart Recommendations</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  @if (Model.Suggestions.Count == 0)
+  {
+    <div class="alert alert-warning text-center py-4">
+      <div class="fs-1 mb-2">🎵</div>
+      <h5>No suggestions yet!</h5>
+      <p class="mb-0">Add songs and mark them as <strong>Completed</strong> to get AI-powered recommendations.</p>
+    </div>
+  }
+  else
+  {
+    <div class="mb-3">
+      <p class="text-muted small">
+        <strong>Note:</strong> Suggestions are generated from completed records. Refresh to see the latest.
+      </p>
+    </div>
+
+    <ol class="list-group">
+      @foreach (var s in Model.Suggestions)
+      {
+        <li class="list-group-item">
+          <div class="row g-3 align-items-center">
+            <div class="col-12 col-md-8">
+              <div class="d-flex flex-column flex-sm-row align-items-start gap-2">
+                <div class="flex-grow-1">
+                  <strong class="fs-5">@s.SongName</strong>
+                  <div class="text-muted">
+                    <small>by</small> <strong>@s.ArtistName</strong>
+                  </div>
+                </div>
+                @if (!string.IsNullOrWhiteSpace(s.Genre))
+                {
+                  <span class="badge bg-info text-dark">@s.Genre</span>
+                }
+              </div>
+              @if (!string.IsNullOrWhiteSpace(s.Reason))
+              {
+                <div class="mt-2 p-2 rounded" style="background: rgba(95, 39, 205, 0.05);">
+                  <small class="text-muted">
+                    <strong>💭 Why:</strong> @s.Reason
+                  </small>
+                </div>
+              }
+            </div>
+            <div class="col-12 col-md-4 text-md-end">
+              <small class="badge bg-secondary">
+                📅 @s.CreatedUtc.ToLocalTime().ToString("MMM dd, HH:mm")
+              </small>
+            </div>
+          </div>
+        </li>
+      }
+    </ol>
+  }
+
+  <div class="mt-4 d-flex gap-2 flex-wrap">
+    <a class="btn btn-outline-secondary" asp-action="History">
+      📜 Back to History
+    </a>
+    <a class="btn btn-outline-primary" asp-action="Index">
+      ➕ Add Another Song
+    </a>
+  </div>
+</div>

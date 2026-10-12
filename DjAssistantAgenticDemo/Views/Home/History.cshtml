@@ -1,0 +1,105 @@
+@model HistoryViewModel
+@{ ViewData["Title"] = "History"; }
+
+<div class="mb-4">
+  <h2>📜 Song History</h2>
+  <p class="text-muted">Track all your song entries and regenerate incorrect data</p>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped align-middle">
+    <thead>
+      <tr>
+        <th>Original</th>
+        <th>Song</th>
+        <th>Artist</th>
+        <th>Genre</th>
+        <th>Status</th>
+        <th class="text-center">Attempts</th>
+        
+        <th class="text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+    @foreach (var s in Model.Songs)
+    {
+      <tr>
+        <td style="max-width:220px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="@s.OriginalDescription">
+          <span class="badge bg-secondary text-white small">@s.OriginalDescription</span>
+        </td>
+        <td><strong>@(s.SongName ?? "—")</strong></td>
+        <td>@(s.ArtistName ?? "—")</td>
+        <td>
+          @if (!string.IsNullOrWhiteSpace(s.Genre))
+          {
+            <span class="badge bg-info">@s.Genre</span>
+          }
+          else
+          {
+            <span>—</span>
+          }
+        </td>
+        <td>
+          @if (s.Status == SongStatus.Completed)
+          {
+            <span class="badge bg-success">✓ Completed</span>
+          }
+          else if (s.Status == SongStatus.NeedsReview)
+          {
+            <span class="badge bg-warning text-dark">⚠ Needs Review</span>
+          }
+          else
+          {
+            <span class="badge bg-secondary">○ Pending</span>
+          }
+        </td>
+        <td class="text-center">
+          <span class="badge" style="background: linear-gradient(45deg, #636e72, #b2bec3);">
+            @s.AttemptCount
+          </span>
+        </td>
+        
+        <td>
+          <form method="post" action="/records/@s.Id/regenerate" class="d-flex flex-column flex-lg-row gap-2 align-items-stretch align-items-lg-center">
+            @Html.AntiForgeryToken()
+            <select class="form-select form-select-sm" name="fields" style="min-width:140px">
+              <option value="both">Artist + Genre</option>
+              <option value="artist">Artist only</option>
+              <option value="genre">Genre only</option>
+            </select>
+            <button type="submit" class="btn btn-sm btn-outline-danger text-nowrap">
+              🔄 Regenerate
+            </button>
+          </form>
+        </td>
+      </tr>
+      <tr>
+            <td style="max-width:320px" colspan="7">
+                @if (!string.IsNullOrWhiteSpace(s.Reason))
+                {
+                    <small class="text-muted">@s.Reason</small>
+                }
+                else
+                {
+                    <span>—</span>
+                }
+            </td>
+      </tr>
+    }
+    </tbody>
+  </table>
+</div>
+
+<div class="mt-4 d-flex gap-2 flex-wrap">
+    <a asp-controller="Home"
+       asp-action="Index"
+       asp-fragment="suggestions"
+       class="btn btn-outline-primary">
+        💡 Go to Suggestions
+    </a>
+    <a asp-controller="Home"
+       asp-action="Index"
+       class="btn btn-outline-secondary">
+        🎵 Add Song
+    </a>
+</div>

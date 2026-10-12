@@ -1,0 +1,285 @@
+/* Rainbow gradient background */
+body {
+    background: linear-gradient(135deg, 
+        #ff6b6b 0%, 
+        #feca57 16%, 
+        #48dbfb 33%, 
+        #0abde3 50%, 
+        #5f27cd 66%, 
+        #ff9ff3 83%, 
+        #ff6b6b 100%);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    min-height: 100vh;
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Navbar with glass effect */
+.navbar {
+    background: rgba(0, 0, 0, 0.7) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #0abde3, #5f27cd, #ff9ff3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-link {
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    transform: translateY(-2px);
+    color: #feca57 !important;
+}
+
+/* Card styling with glass effect */
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Form styling */
+.form-control, .form-select {
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #5f27cd;
+    box-shadow: 0 0 0 0.2rem rgba(95, 39, 205, 0.25);
+}
+
+/* Button rainbow styling */
+.btn-primary {
+    background: linear-gradient(45deg, #5f27cd, #48dbfb);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 30px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(95, 39, 205, 0.4);
+    background: linear-gradient(45deg, #48dbfb, #5f27cd);
+}
+
+.btn-outline-primary {
+    border: 2px solid #5f27cd;
+    color: #5f27cd;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background: linear-gradient(45deg, #5f27cd, #48dbfb);
+    color: white;
+    border: none;
+    transform: translateY(-2px);
+}
+
+.btn-outline-danger {
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-danger:hover {
+    transform: translateY(-2px);
+}
+
+.btn-outline-secondary {
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-secondary:hover {
+    transform: translateY(-2px);
+}
+
+/* Alert styling */
+.alert {
+    border-radius: 15px;
+    border: none;
+}
+
+.alert-light {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.alert-warning {
+    background: linear-gradient(135deg, #feca57, #ff9ff3);
+    color: #2d3436;
+    font-weight: 500;
+}
+
+/* List group with rainbow borders */
+.list-group-item {
+    border-radius: 10px !important;
+    margin-bottom: 10px;
+    border: none;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.list-group-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+.list-group-numbered {
+    counter-reset: section;
+}
+
+.list-group-numbered > .list-group-item::before {
+    background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb);
+    color: white;
+    font-weight: bold;
+    padding: 5px 12px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+/* Badge rainbow colors */
+.badge.bg-info {
+    background: linear-gradient(45deg, #48dbfb, #0abde3) !important;
+    color: white !important;
+    padding: 5px 12px;
+    border-radius: 20px;
+}
+
+.badge.bg-success {
+    background: linear-gradient(45deg, #00b894, #00cec9) !important;
+}
+
+.badge.bg-warning {
+    background: linear-gradient(45deg, #feca57, #ff9ff3) !important;
+}
+
+.badge.bg-secondary {
+    background: linear-gradient(45deg, #636e72, #b2bec3) !important;
+}
+
+/* Table styling */
+.table {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.table thead {
+    background: linear-gradient(135deg, #5f27cd, #48dbfb);
+    color: white;
+}
+.table-striped tbody tr:nth-of-type(even) {
+    border-bottom: none;
+}
+.table-striped tbody tr:nth-of-type(2n + 1) {
+   border-top-style: solid;
+} .table tbody tr {
+    transition: all 0.3s ease;
+} .table tbody tr:hover {
+    /*background-color: rgba(72, 219, 251, 0.1);*/
+    transform: scale(1.01);
+}
+/* Heading styles */
+h2 {
+    font-weight: bold;
+    background: linear-gradient(45deg, #5f27cd, #48dbfb, #0abde3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+}
+/* Container with glass effect */
+main.container {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navbar-nav {
+        margin-top: 10px;
+    }
+
+    main.container {
+        padding: 15px;
+    }
+
+    .list-group-item {
+        font-size: 0.9rem;
+    }
+
+    .table {
+        font-size: 0.85rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+} @media (max-width: 576px) {
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .card {
+        padding: 15px;
+    }
+}
+/* Suggestions section styling */
+#suggestions-section {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+/* Now Playing compact form */
+.now-playing-form {
+    padding: 20px;
+}
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+} ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+} ::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #5f27cd, #48dbfb);
+    border-radius: 5px;
+} ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #48dbfb, #5f27cd);
+}
